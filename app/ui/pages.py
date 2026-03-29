@@ -27,7 +27,7 @@ from ..services import (
 )
 from .components import (
     render_header,
-    render_aip_status_summary,
+    render_foundry_status_summary,
     render_flight_status,
     render_ground_service_panel,
     render_hotel_panel,
@@ -43,8 +43,8 @@ from .components import (
 
 def init_session_state():
     """Initialize Streamlit session state variables."""
-    if 'aip_actions' not in st.session_state:
-        st.session_state['aip_actions'] = []
+    if 'foundry_actions' not in st.session_state:
+        st.session_state['foundry_actions'] = []
     if 'diversion_triggered' not in st.session_state:
         st.session_state['diversion_triggered'] = False
     if 'terminated_passengers' not in st.session_state:
@@ -64,7 +64,7 @@ def init_session_state():
 def handle_reset():
     """Handle the reset button click to restore initial database state."""
     reset_database()
-    st.session_state['aip_actions'] = []
+    st.session_state['foundry_actions'] = []
     st.session_state['diversion_triggered'] = False
     st.session_state['terminated_passengers'] = []
     st.session_state['is_reasoning'] = False
@@ -110,7 +110,7 @@ def execute_diversion_event(flight_iata: str, alternate_iata: str):
 
     # Step 3: Synchronize Neo4j state
     executed_actions = execute_action(response.content)
-    st.session_state['aip_actions'] = executed_actions
+    st.session_state['foundry_actions'] = executed_actions
     st.session_state['diversion_triggered'] = True
     st.session_state['is_reasoning'] = False
     st.session_state['pending_diversion'] = None
@@ -139,7 +139,7 @@ def execute_subflight_creation(flight_iata: str, alternate_iata: str):
     response = invoke_llm_with_retry(final_prompt)
 
     executed_actions = execute_action(response.content)
-    st.session_state['aip_actions'] = st.session_state['aip_actions'] + executed_actions
+    st.session_state['foundry_actions'] = st.session_state['foundry_actions'] + executed_actions
     st.session_state['is_reasoning'] = False
     st.session_state['pending_subflight'] = None
     st.rerun()
@@ -206,7 +206,7 @@ def render_main_page():
 
     This is the entry point for the Streamlit UI.
     """
-    st.set_page_config(layout='wide', page_title='Palantir AIP 本体论演示')
+    st.set_page_config(layout='wide', page_title='Palantir Ontology 演示')
 
     # Initialize session state
     init_session_state()
@@ -214,7 +214,7 @@ def render_main_page():
     # Render header
     render_header()
 
-    # Get system status and render AIP status summary
+    # Get system status and render Foundry status summary
     try:
         system_status = get_system_status()
     except Exception:
@@ -225,8 +225,8 @@ def render_main_page():
     pending_diversion = st.session_state.get('pending_diversion')
     pending_subflight = st.session_state.get('pending_subflight')
 
-    # Render AIP status summary with reasoning indicator
-    render_aip_status_summary(
+    # Render Foundry status summary with reasoning indicator
+    render_foundry_status_summary(
         system_status=system_status,
         on_reset_callback=handle_reset,
         is_reasoning=is_reasoning
@@ -241,7 +241,7 @@ def render_main_page():
     # Four-column layout
     col1, col2, col3, col4 = st.columns(4)
 
-    actions = st.session_state.get('aip_actions', [])
+    actions = st.session_state.get('foundry_actions', [])
     flight_iata = st.session_state.get('flight_select', 'CA123')
     alternate_iata = st.session_state.get('airport_select', 'SZX')
 
@@ -279,5 +279,5 @@ def render_main_page():
     # Debug section
     render_debug_section(
         llm_raw_response=st.session_state.get('llm_raw_response'),
-        aip_actions=st.session_state.get('aip_actions')
+        foundry_actions=st.session_state.get('foundry_actions')
     )

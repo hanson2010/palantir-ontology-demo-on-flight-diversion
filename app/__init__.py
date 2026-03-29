@@ -1,4 +1,4 @@
-"""Palantir AIP Ontology Demo Application.
+"""Palantir Ontology Demo Application.
 
 This package provides a flight diversion demonstration using:
 - Neo4j for ontology data storage

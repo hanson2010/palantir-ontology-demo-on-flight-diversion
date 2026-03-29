@@ -1,10 +1,10 @@
-# ✈️ Palantir AIP 本体论演示
+# ✈️ Palantir Ontology 演示
 
 基于 Palantir 本体论（Ontology）思想的航班备降处置演示系统，展示如何将"临时的应急处理"转变为"基于语义的系统化决策"。
 
 ## 🎯 项目目标
 
-演示 Palantir AIP 的核心理念：**本体论（Data）+ 大模型（Reasoning）+ 动作框架（Action Execution）的无缝闭环**。
+演示 Palantir Ontology 的核心理念：**本体论（Data）+ 大模型（Reasoning）+ 动作框架（Action Execution）的无缝闭环**。
 
 通过航班备降场景，展示如何利用知识图谱构建语义化的数据模型，结合大语言模型进行智能推理，并自动执行决策动作。
 
@@ -12,7 +12,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                          Palantir AIP 架构                               │
+│                        Palantir Ontology 架构                            │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
 │   ┌──────────────┐     ┌──────────────┐     ┌──────────────┐           │
@@ -146,11 +146,11 @@ palantir-ontology-demo-on-flight-diversion/
 └── README.md           # 项目文档
 ```
 
-## 🎓 Palantir AIP 核心概念
+## 🎓 Palantir Ontology 核心概念
 
 ### 本体论（Ontology）
 
-本体论是 Palantir AIP 的数据基础，它将现实世界的实体及其关系建模为语义化的知识图谱：
+本体论是 Palantir Ontology 的数据基础，它将现实世界的实体及其关系建模为语义化的知识图谱：
 
 - **实体（Objects）**：航班、旅客、机场、酒店等
 - **属性（Properties）**：航班状态、旅客会员等级、酒店星级等
@@ -213,11 +213,11 @@ def get_ontology_data(flight_iata, alternate_iata):
     # ...
 ```
 
-### AIP 推理核心
+### Ontology 推理核心
 
 ```python
 diversion_prompt_template = '''
-You are the reasoning core of Palantir AIP. A flight diversion event has occurred.
+You are the reasoning core of Palantir Ontology. A flight diversion event has occurred.
 You need to analyze the current state of the Ontology (provided below) and generate a JSON list of Actions to execute in the system.
 
 Ontology Data:

@@ -21,7 +21,7 @@ def render_header():
     """Render the application header with title and description."""
     st.markdown("""
     <div style="text-align: center;">
-        <h1>✈️ Palantir AIP 本体论演示</h1>
+        <h1>✈️ Palantir Ontology 演示</h1>
         <p>本体论（Data）+ 大模型（Reasoning）+ 动作框架（Action Execution）的无缝闭环</p>
     </div>
     """, unsafe_allow_html=True)
@@ -31,8 +31,8 @@ def render_header():
 # Status Summary Components
 # =============================================================================
 
-def render_aip_status_summary(system_status: dict, on_reset_callback, is_reasoning: bool = False):
-    """Render the AIP status summary bar.
+def render_foundry_status_summary(system_status: dict, on_reset_callback, is_reasoning: bool = False):
+    """Render the Foundry status summary bar.
 
     Args:
         system_status: Dictionary containing system status (flights, passengers, hotels, subFlights).
@@ -244,12 +244,12 @@ def render_termination_section(
 # Debug Components
 # =============================================================================
 
-def render_debug_section(llm_raw_response: str = None, aip_actions: list = None):
+def render_debug_section(llm_raw_response: str = None, foundry_actions: list = None):
     """Render the debug section showing LLM response and parsed actions.
 
     Args:
         llm_raw_response: The raw LLM response text.
-        aip_actions: List of parsed actions.
+        foundry_actions: List of parsed actions.
     """
     st.markdown('---')
     st.markdown('### 🔧 Debug 信息')
@@ -257,6 +257,6 @@ def render_debug_section(llm_raw_response: str = None, aip_actions: list = None)
         if llm_raw_response:
             st.markdown('**LLM 原始响应:**')
             st.code(llm_raw_response, language='json')
-        if aip_actions:
+        if foundry_actions:
             st.markdown('**解析后的 Actions:**')
-            st.json(aip_actions)
+            st.json(foundry_actions)

@@ -42,7 +42,7 @@ def invoke_llm_with_retry(prompt, max_retries: int = 3, delay: int = 2):
 
 # Prompt template for flight diversion event
 DIVERSION_PROMPT_TEMPLATE = '''
-You are the reasoning core of Palantir AIP. A flight diversion event has occurred.
+You are the reasoning core of Palantir Ontology. A flight diversion event has occurred.
 You need to analyze the current state of the Ontology (provided below) and generate a JSON list of Actions to execute in the system.
 
 Ontology Data:
@@ -86,7 +86,7 @@ Generate ONLY the JSON array, no other text.
 
 # Prompt template for sub-flight (recovery flight) creation
 SUBFLIGHT_PROMPT_TEMPLATE = '''
-You are the reasoning core of Palantir AIP. A sub-flight (recovery flight) needs to be created.
+You are the reasoning core of Palantir Ontology. A sub-flight (recovery flight) needs to be created.
 You need to analyze the current state of the Ontology and generate Actions to create the sub-flight.
 
 Ontology Data:

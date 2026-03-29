@@ -1,4 +1,4 @@
-"""Palantir AIP Ontology Demo - Entry Point.
+"""Palantir Ontology Demo - Entry Point.
 
 This is the main entry point for backward compatibility.
 The application has been refactored into a modular structure under the app/ directory.
